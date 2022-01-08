@@ -44,7 +44,7 @@ class Router(meterRegistry: MeterRegistry) : RouteBuilder() {
     override fun configure() {
          from(DIRECT_ROUTE)
             .process { exchange ->
-                    val q = exchange.getIn().getHeader("keywords")?.toString()
+                    val q = (exchange.getIn().getHeader("keywords")) as String 
                     val command = q.replace("max:", "?count=")
 
                     exchange.getIn().setHeader("keywords", command)
